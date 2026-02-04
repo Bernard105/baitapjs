@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <title>Bài 2</title>
+  <style>
+    #box{
+      border: 5px solid green;
+      width: 100px;
+      height: 100px;
+    }
+  </style>
+</head>
+<body>
+  <h2>Bài 2</h2>
+
+  <div id="box"></div>
+
+  <form name="FormName">
+    <button id="btn20" type="button">Border 20px</button>
+    <button id="btn5" type="button">Border 5px</button>
+  </form>
+
+  <script>
+    function setBorderWidth(width) {
+      document.getElementById("box").style.borderWidth = width + "px";
+    }
+
+    document.getElementById("btn20").addEventListener("click", () => setBorderWidth(20));
+    document.getElementById("btn5").addEventListener("click", () => setBorderWidth(5));
+  </script>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <title>Ex Dom</title>
+  <style>
+    #out { border: 2px solid red; padding: 12px; margin-top: 12px; }
+    img { display:block; margin: 8px 0; }
+  </style>
+</head>
+<body>
+  <h2>Bài 1</h2>
+
+  <img id="img1" src="https://www.mozilla.org/images/mozilla-banner.gif" alt="mozilla" />
+  <img id="img2" src="https://www.mozilla.org/images/mozilla-banner.gif" alt="mozilla" width="500" height="50" />
+  <img id="img3" src="https://www.mozilla.org/images/mozilla-banner.gif" alt="mozilla" style="width: 500px; height: 50px;" />
+
+  <div id="out"></div>
+
+  <script>
+    const out = document.getElementById("out");
+    const imgs = [
+      document.getElementById("img1"),
+      document.getElementById("img2"),
+      document.getElementById("img3"),
+    ];
+
+    function render() {
+      const ul = document.createElement("ul");
+
+      imgs.forEach((img, i) => {
+        const li = document.createElement("li");
+        li.innerHTML = `
+          <strong>Image ${i + 1}</strong>
+          <ul>
+            <li>height: ${img.height}</li>
+            <li>width: ${img.width}</li>
+            <li>style.height: ${img.style.height || "(empty)"}</li>
+            <li>style.width: ${img.style.width || "(empty)"}</li>
+          </ul>
+        `;
+        ul.appendChild(li);
+      });
+
+      out.innerHTML = "";
+      out.appendChild(ul);
+    }
+
+    // đợi ảnh load để .height/.width ra đúng kích thước hiển thị
+    window.addEventListener("load", render);
+  </script>
+</body>
+</html>

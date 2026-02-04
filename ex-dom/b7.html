@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <title>Bài 7</title>
+  <style>
+    table { border-collapse: collapse; }
+    thead { font-weight: bold; }
+    td { padding: 2px 10px; border: 1px solid #ccc; vertical-align: top; }
+    .odd { background-color: #efdfef; }
+    .even { background-color: #ffffff; }
+  </style>
+</head>
+<body>
+  <h2>Bài 7</h2>
+
+  <h1>Event type: <span id="eventType"></span></h1>
+  <div id="wrap"></div>
+
+  <script>
+    function showEventProperties(event) {
+      document.getElementById("eventType").textContent = event.type;
+
+      const table = document.createElement("table");
+
+      const thead = document.createElement("thead");
+      const hr = document.createElement("tr");
+      ["#", "Property", "Value"].forEach(text => {
+        const td = document.createElement("td");
+        td.textContent = text;
+        hr.appendChild(td);
+      });
+      thead.appendChild(hr);
+      table.appendChild(thead);
+
+      const tbody = document.createElement("tbody");
+      let i = 0;
+
+      for (const p in event) {
+        i++;
+        const tr = document.createElement("tr");
+        tr.className = (i % 2 === 0) ? "even" : "odd";
+
+        const c1 = tr.insertCell(-1);
+        const c2 = tr.insertCell(-1);
+        const c3 = tr.insertCell(-1);
+
+        c1.textContent = String(i);
+        c2.textContent = p;
+
+        let val;
+        try {
+          val = event[p];
+          if (val === undefined) val = "undefined";
+          else if (val === null) val = "null";
+          else if (typeof val === "function") val = "[function]";
+          else val = String(val);
+        } catch (e) {
+          val = "[unreadable]";
+        }
+        c3.textContent = val;
+
+        tbody.appendChild(tr);
+      }
+
+      table.appendChild(tbody);
+
+      const wrap = document.getElementById("wrap");
+      wrap.innerHTML = "";
+      wrap.appendChild(table);
+    }
+
+    window.onload = (e) => showEventProperties(e);
+  </script>
+</body>
+</html>

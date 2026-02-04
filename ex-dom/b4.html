@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <title>Bài 4</title>
+  <style>
+    body { background-color: darkblue; color: white; }
+    p { font-family: Arial; font-size: 10pt; margin-left: 0.125in; }
+    #lumpy { display: none; }
+  </style>
+</head>
+<body>
+  <h2>Bài 4</h2>
+  <p>Đoạn văn demo</p>
+  <p id="lumpy">Bạn sẽ không thấy dòng này</p>
+
+  <script>
+    const sheets = document.styleSheets;
+
+    for (const sheet of sheets) {
+      // Có thể lỗi CORS nếu là CSS từ domain khác; ở bài này dùng <style> nên OK
+      const rules = sheet.cssRules || [];
+      for (const rule of rules) {
+        if (rule.selectorText) {
+          console.log(rule.selectorText);
+        } else {
+          // ví dụ @media, @keyframes... không có selectorText
+          console.log("(no selectorText)", rule.cssText);
+        }
+      }
+    }
+  </script>
+</body>
+</html>

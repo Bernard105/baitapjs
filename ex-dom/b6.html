@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <title>Bài 6</title>
+  <style>
+    #d1{
+      margin-left: 10px;
+      background-color: rgb(173 216 230);
+      height: 20px;
+      max-width: 20px;
+      width: 20px; /* để dễ thấy width thực tế */
+    }
+  </style>
+</head>
+<body>
+  <h2>Bài 6</h2>
+
+  <div id="d1">&nbsp;</div>
+
+  <form>
+    <button id="btn" type="button">getComputedStyle</button>
+    <div style="margin-top:10px;">
+      Height: <input id="t1" />
+      Max-width: <input id="t2" />
+      Background: <input id="t3" />
+    </div>
+  </form>
+
+  <script>
+    function cStyles() {
+      const el = document.getElementById("d1");
+      const cs = window.getComputedStyle(el);
+
+      document.getElementById("t1").value = cs.getPropertyValue("height");
+      document.getElementById("t2").value = cs.getPropertyValue("max-width"); // hoặc "width"
+      document.getElementById("t3").value = cs.getPropertyValue("background-color");
+    }
+
+    document.getElementById("btn").addEventListener("click", cStyles);
+  </script>
+</body>
+</html>

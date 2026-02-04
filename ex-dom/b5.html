@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <title>Bài 5</title>
+  <style>
+    #t-daddy { border: 1px solid red; border-collapse: collapse; }
+    #t-daddy td { padding: 8px 14px; border: 1px solid #999; }
+    #c1 { background-color: pink; }
+  </style>
+</head>
+<body>
+  <h2>Bài 5</h2>
+
+  <table id="t-daddy">
+    <tr id="tbl1">
+      <td id="c1">one</td>
+    </tr>
+    <tr>
+      <td id="c2">two</td>
+    </tr>
+  </table>
+
+  <script>
+    function stopEvent(event) {
+      document.getElementById("c2").textContent = "hello";
+      event.stopPropagation();
+      console.log("event propagation halted - ngăn sự kiện ảnh hưởng lên <table> thành công!");
+    }
+
+    document.getElementById("tbl1").addEventListener("click", stopEvent, false);
+
+    document.getElementById("t-daddy").addEventListener("click", () => {
+      console.log("t-daddy clicked");
+    }, false);
+  </script>
+</body>
+</html>

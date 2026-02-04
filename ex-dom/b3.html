@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <title>Bài 3</title>
+</head>
+<body>
+  <h2>Bài 3</h2>
+
+  <p id="pid">Some text</p>
+
+  <form>
+    <button type="button" id="btn">Change text</button>
+  </form>
+
+  <script>
+    function changeText() {
+      const p = document.getElementById("pid");
+      p.style.color = "blue";
+      p.style.fontSize = "18pt";
+    }
+
+    document.querySelector("#btn").addEventListener("click", changeText);
+  </script>
+</body>
+</html>
